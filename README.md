@@ -14,7 +14,7 @@ The configurations happens at compile time, simply edit the file:
 # Currently supported operating systems
 
 ## Linux
-* Arch
+* Arch | Endeavour
 * Artix
 * Fedora
 * Ubuntu

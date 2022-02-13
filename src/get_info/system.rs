@@ -17,7 +17,7 @@ pub fn get_os() -> OS {
     if let Ok(os_release) = rs_release::get_os_release() {
         if let Some(os) = os_release.get("ID") {
             match os.as_str() {
-                "arch" => return OS::Arch,
+                "arch" | "endeavouros" => return OS::Arch,
                 "artix" => return OS::Artix,
                 "fedora" => return OS::Fedora,
                 "ubuntu" => return OS::Ubuntu,
