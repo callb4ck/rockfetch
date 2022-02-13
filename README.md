@@ -11,4 +11,10 @@ The configurations happens at compile time, simply edit the file:
 * Execute `cargo build --release`
 * You will find the built executable in `target/release/`. Feel free to strip it with `strip target/release/rockfetch`
 
+# Currently supported operating systems
 
+## Linux
+* Arch
+* Artix
+* Ubuntu
+* Void
