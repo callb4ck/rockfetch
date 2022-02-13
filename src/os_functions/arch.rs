@@ -1,6 +1,6 @@
 use crate::{
     exec,
-    get_info::{shell::{get_gui, get_shell}, system::{get_host, get_user}},
+    get_info::{shell::{get_gui, get_shell}, system::{get_host, get_user, get_uptime}},
     settings::*,
 };
 
@@ -10,7 +10,7 @@ pub fn print() {
     let host = get_host();
 
     let kernel = exec!("uname", "-sr");
-    let uptime = exec!("uptime", "-p").chars().skip(3).collect::<String>();
+    let uptime = get_uptime();
     let packages = exec!(notrim "pacman", "-Q").matches('\n').count();
     let shell = get_shell();
 

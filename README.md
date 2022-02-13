@@ -16,5 +16,6 @@ The configurations happens at compile time, simply edit the file:
 ## Linux
 * Arch
 * Artix
+* Fedora
 * Ubuntu
 * Void
