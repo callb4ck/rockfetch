@@ -1,0 +1,27 @@
+[env]
+
+## Infos ##
+# Colors are simply ANSI color codes (escape char is \u001B)
+# the support for them depends on your terminal
+
+#------------------------#
+
+## Empty Colors ## (Uncomment this and use it as a model)
+
+#RESET = "\u001B[0m"
+#C1 = ""
+#C2 = ""
+#FONT1 = ""
+#FONT2 = ""
+
+#------------------------#
+
+## Ample/Coffee theme ## (Current color scheme)
+
+RESET = "\u001B[0m" # Reset
+
+C1 = "\u001B[0m\u001B[1m\u001B[38;2;192;103;9m" # Orange
+C2 = "\u001B[0m\u001B[1m\u001B[38;2;226;78;78m" # Red
+
+FONT1 = "\u001B[0m\u001B[1m\u001B[38;2;226;78;78m" # Red
+FONT2 = "\u001B[0m\u001B[1m\u001B[38;2;192;103;9m" # Orange
