@@ -9,11 +9,25 @@ pub enum OS {
     Ubuntu,
     Void,
     None,
-    Other(String),
+    GenericUnix(String),
 }
 
 /// Get the currently running operating system
 pub fn get_os() -> OS {
+    let kernel = exec!("uname", "-s");
+
+    if kernel.ends_with("BSD") {
+        return OS::GenericUnix("BSD".to_string());
+    } else if kernel.starts_with("GNU") {
+        return OS::GenericUnix("Linux".to_string());
+    }
+
+    match kernel.as_str() {
+        "Darwin" => return OS::GenericUnix("MacOS".to_string()),
+        "DragonFly" | "Bitrig" => return OS::GenericUnix("BSD".to_string()),
+        _ => {}
+    }
+
     if let Ok(os_release) = rs_release::get_os_release() {
         if let Some(os) = os_release.get("ID") {
             match os.as_str() {
@@ -27,7 +41,7 @@ pub fn get_os() -> OS {
         }
 
         if let Some(os_name) = os_release.get("NAME") {
-            return OS::Other(os_name.clone());
+            return OS::GenericUnix(os_name.clone());
         }
     }
 
