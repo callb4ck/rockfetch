@@ -1,7 +1,7 @@
 use crate::{
     exec,
     get_info::{shell::{get_gui, get_shell}, system::{get_host, get_user, get_uptime}},
-    settings::*,
+    config::*,
 };
 
 pub fn print() {

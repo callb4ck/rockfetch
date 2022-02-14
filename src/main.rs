@@ -3,7 +3,7 @@ use os_functions::{arch, artix, void, ubuntu, fedora, generic_unix};
 
 mod get_info;
 mod os_functions;
-mod settings;
+mod config;
 
 fn main() {
     match get_os() {

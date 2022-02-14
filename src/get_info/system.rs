@@ -80,7 +80,7 @@ pub fn get_uptime() -> String {
     let mut buf: Vec<u8> = Vec::new();
 
     BufReader::new(file)
-        .read_until('.' as u8, &mut buf)
+        .read_until(b'.', &mut buf)
         .unwrap();
 
     buf.pop();
@@ -89,7 +89,7 @@ pub fn get_uptime() -> String {
 
     let hours = minutes / 60;
 
-    minutes = minutes - (hours * 60);
+    minutes -= hours * 60;
 
     format!(
         "{hours} hour{}, {minutes} minute{}",
