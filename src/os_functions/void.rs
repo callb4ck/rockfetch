@@ -1,10 +1,19 @@
 use crate::{
-    exec,
-    get_info::{shell::{get_gui, get_shell}, system::{get_host, get_user, get_uptime}},
-    config::*,
+    env_or, exec,
+    get_info::{
+        shell::{get_gui, get_shell},
+        system::{get_host, get_uptime, get_user},
+    }, rgb,
 };
 
 pub fn print() {
+    let reset = env_or!(reset);
+    let c1 = env_or!("C1" or rgb!(85, 255, 85));
+    let c2 = env_or!("C2" or rgb!(171, 194, 171));
+    let font1 = env_or!("FONT1" or rgb!(85, 255, 85));
+    let font2 = env_or!("FONT2" or rgb!(255, 255, 85));
+    let font3 = env_or!("FONT3" or rgb!(255, 255, 255));
+
     let user = get_user();
 
     let host = get_host();
@@ -17,13 +26,13 @@ pub fn print() {
     let gui = get_gui();
 
     println!(
-        "      {C1}_______      {FONT2}{user}{FONT1}@{FONT2}{host}
-   {C1}_ \\______ -     {FONT1}OS:{RESET}        Void
-  {C1}| \\  {C2}___{C1}  \\ |    {FONT1}KERNEL:{RESET}    {kernel}
-  {C1}| | {C2}/   \\{C1} | |    {FONT1}UPTIME:{RESET}    {uptime}
-  {C1}| | {C2}\\___/{C1} | |    {FONT1}PACKAGES:{RESET}  {packages}
-  {C1}| \\______ \\_|    {FONT1}SHELL:{RESET}     {shell}
-   {C1}-_______\\       {FONT1}DE/WM:{RESET}     {gui}{RESET}
-");
-
+        "     {c1}_______      {font2}{user}{font3}@{font2}{host}
+  {c1}_ \\______ -     {font1}OS:{reset}        Void
+ {c1}| \\  {c2}___{c1}  \\ |    {font1}KERNEL:{reset}    {kernel}
+ {c1}| | {c2}/   \\{c1} | |    {font1}UPTIME:{reset}    {uptime}
+ {c1}| | {c2}\\___/{c1} | |    {font1}PACKAGES:{reset}  {packages}
+ {c1}| \\______ \\_|    {font1}SHELL:{reset}     {shell}
+  {c1}-_______\\       {font1}DE/WM:{reset}     {gui}{reset}
+"
+    );
 }
