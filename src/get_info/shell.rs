@@ -14,6 +14,7 @@ macro_rules! unwrap_return {
     }
 }
 
+/// Get current graphical shell (DE or WM)
 pub fn get_gui() -> String {
 
     unwrap_return!("GNOME_DESKTOP_SESSION_ID" => "GNOME");
@@ -27,6 +28,7 @@ pub fn get_gui() -> String {
 }
 
 #[inline]
+/// Get current command line shell
 pub fn get_shell() -> String {
     basename(&std::env::var("SHELL").unwrap_or_else(|_| String::new()))
 }

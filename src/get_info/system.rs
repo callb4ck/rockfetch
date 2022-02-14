@@ -1,5 +1,9 @@
-use std::{env::var, fs::File, io::{BufReader, BufRead}};
 use crate::exec;
+use std::{
+    env::var,
+    fs::File,
+    io::{BufRead, BufReader},
+};
 
 /// An enum containing the supported operating systems and exceptions
 pub enum OS {
@@ -69,17 +73,27 @@ pub fn get_user() -> String {
     var("USER").unwrap_or_else(|_| exec!("whoami"))
 }
 
+/// Get current uptime
 pub fn get_uptime() -> String {
     let file = File::open("/proc/uptime").unwrap();
+
     let mut buf: Vec<u8> = Vec::new();
-    BufReader::new(file).read_until('.' as u8, &mut buf).unwrap();
+
+    BufReader::new(file)
+        .read_until('.' as u8, &mut buf)
+        .unwrap();
+
     buf.pop();
 
-    let mut minutes = String::from_utf8(buf).unwrap().parse::<u32>().unwrap()/60;
+    let mut minutes = String::from_utf8(buf).unwrap().parse::<u32>().unwrap() / 60;
 
-    let hours = minutes/60;
+    let hours = minutes / 60;
 
-    minutes = minutes-(hours*60);
+    minutes = minutes - (hours * 60);
 
-    format!("{hours} hours, {minutes} minutes")
+    format!(
+        "{hours} hour{}, {minutes} minute{}",
+        if hours != 1 { "s" } else { "" },
+        if minutes != 1 { "s" } else { "" }
+    )
 }
