@@ -61,6 +61,9 @@ pub fn get_host() -> String {
         std::fs::read_to_string("/etc/hostname")
         .unwrap_or_else(|_| String::new())
         .trim_end()
+        .split_whitespace()
+        .last()
+        .unwrap_or("")
         .to_string()
     );
 
@@ -68,6 +71,9 @@ pub fn get_host() -> String {
         host = std::fs::read_to_string("/etc/hostname")
         .unwrap_or_else(|_| String::new())
         .trim_end()
+        .split_whitespace()
+        .last()
+        .unwrap_or("")
         .to_string()
     }
 
