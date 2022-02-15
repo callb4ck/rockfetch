@@ -13,11 +13,12 @@
 #theme = "name"
 
 #RESET  = ""      # You can use those values to override your current theme
-#COLOR1 = ""
-#COLOR2 = ""
-#FONT1  = ""
-#FONT2  = ""
-#FONT3  = ""
+#COLOR1 = []
+#COLOR2 = []
+#COLOR3 = []
+#FONT1  = []
+#FONT2  = []
+#FONT3  = []
 
 
 
@@ -25,12 +26,13 @@
 
 #RESET = ""
 
-#COLOR1 = ""
-#COLOR2 = ""
+#COLOR1 = []
+#COLOR2 = []
+#COLOR3 = []
 
-#FONT1 = ""
-#FONT2 = ""
-#FONT3 = ""
+#FONT1 = []
+#FONT2 = []
+#FONT3 = []
 
 
 
@@ -38,7 +40,7 @@
 #[theme.ample_coffee]     # (Uncomment this theme and set it in [conf]'s theme setting to use it)
 #COLOR1 = [192, 103, 9] # Orange
 #COLOR2 = [226, 78, 78] # Red
-
+#COLOR3 = [226, 78, 78] # Red
 #FONT1 = [226, 78, 78] # Red
 #FONT2 = [192, 103, 9] # Orange
 #FONT3 = [226, 78, 78] # Red

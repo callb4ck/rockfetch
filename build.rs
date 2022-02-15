@@ -12,6 +12,7 @@ fn main() {
 
     let mut c1: Option<&Value> = None;
     let mut c2: Option<&Value> = None;
+    let mut c3: Option<&Value> = None;
 
     let mut font1: Option<&Value> = None;
     let mut font2: Option<&Value> = None;
@@ -27,6 +28,7 @@ fn main() {
 
                             c1 = theme.get("COLOR1");
                             c2 = theme.get("COLOR2");
+                            c3 = theme.get("COLOR3");
 
                             font1 = theme.get("FONT1");
                             font2 = theme.get("FONT2");
@@ -56,10 +58,7 @@ fn main() {
                             ))
                         }
 
-                        _ => match $val.as_str() {
-                            Some(v) => Some(v.to_string()),
-                            _ => None
-                        }
+                        _ => $val.as_str().map(|v| v.to_string())
                     }
                 }
             }
@@ -86,6 +85,7 @@ fn main() {
 
             set_env!("COLOR1"; "C1" => c1);
             set_env!("COLOR2"; "C2" => c2);
+            set_env!("COLOR3"; "C3" => c3);
 
             set_env!("FONT1"; "FONT1" => font1);
             set_env!("FONT2"; "FONT2" => font2);

@@ -9,6 +9,7 @@ use std::{
 pub enum OS {
     Arch,
     Artix,
+    Endeavour,
     Fedora,
     Ubuntu,
     Void,
@@ -35,8 +36,9 @@ pub fn get_os() -> OS {
     if let Ok(os_release) = rs_release::get_os_release() {
         if let Some(os) = os_release.get("ID") {
             match os.as_str() {
-                "arch" | "endeavouros" => return OS::Arch,
+                "arch" => return OS::Arch,
                 "artix" => return OS::Artix,
+                "endeavouros" => return OS::Endeavour,
                 "fedora" => return OS::Fedora,
                 "ubuntu" => return OS::Ubuntu,
                 "void" => return OS::Void,
