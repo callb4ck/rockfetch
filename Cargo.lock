@@ -4,7 +4,7 @@ version = 3
 
 [[package]]
 name = "rockfetch"
-version = "0.1.4"
+version = "0.1.5"
 dependencies = [
  "rs-release",
  "toml",

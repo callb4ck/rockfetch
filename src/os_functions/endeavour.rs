@@ -36,17 +36,4 @@ r"       {c3}/{c1}\         {font2}{user}{font3}@{font2}{host}
   {c2}/____--         {font1}SHELL:{reset}     {shell}
                   {font1}DE/WM:{reset}     {gui}
 {reset}")
-
-    /*
-    println!(
-        r"{c1}       /\         {font2}{user}{font3}@{font2}{host}
-{c1}      /  \        {font1}OS:{reset}        Arch
-{c1}     /\   \       {font1}KERNEL:{reset}    {kernel}
-{c1}    /   {c2}   \      {font1}UPTIME:{reset}    {uptime}
-{c2}   /   ,,   \     {font1}PACKAGES:{reset}  {packages}
-{c2}  /   |  |  -\    {font1}SHELL:{reset}     {shell}
-{c2} /_-''    ''-_\   {font1}DE/WM:{reset}     {gui}
-{reset}"
-    );
-    */
 }
