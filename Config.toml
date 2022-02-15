@@ -1,5 +1,6 @@
 ## Infos ##
-# Colors are simply ANSI color codes (escape char is \u001B)
+# Colors are either ANSI color codes (escape char is \u001B) or an array of rgb values [r, g, b].
+# RGB colors are bold/bright by default, append an optional element to the array to use the normal variant (ex: [255, 255, 255, 1]).
 # support for them depends on your terminal.
 #
 # In case of a missing setting (both in the theme an conf table) the hardcoded default will be used.
@@ -11,12 +12,12 @@
 [conf]
 #theme = "name"
 
-#RESET = ""  # You can use those values to override your current theme
+#RESET  = ""      # You can use those values to override your current theme
 #COLOR1 = ""
 #COLOR2 = ""
-#FONT1 = ""
-#FONT2 = ""
-#FONT3 = ""
+#FONT1  = ""
+#FONT2  = ""
+#FONT3  = ""
 
 
 
@@ -34,11 +35,10 @@
 
 
 
-#[theme.ample_coffee]    # (Uncomment this theme and set it in [conf]'s theme setting to use it)
-#
-#COLOR1 = "\u001B[0m\u001B[1;38;2;192;103;9m" # Orange
-#COLOR2 = "\u001B[0m\u001B[1;38;2;226;78;78m" # Red
-#
-#FONT1 = "\u001B[0m\u001B[1;38;2;226;78;78m" # Red
-#FONT2 = "\u001B[0m\u001B[1;38;2;192;103;9m" # Orange
-#FONT3 = "\u001B[0m\u001B[1;38;2;226;78;78m" # Red
+#[theme.ample_coffee]     # (Uncomment this theme and set it in [conf]'s theme setting to use it)
+#COLOR1 = [192, 103, 9] # Orange
+#COLOR2 = [226, 78, 78] # Red
+
+#FONT1 = [226, 78, 78] # Red
+#FONT2 = [192, 103, 9] # Orange
+#FONT3 = [226, 78, 78] # Red

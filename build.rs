@@ -40,16 +40,42 @@ fn main() {
                 }
             }
 
+            macro_rules! array_or_string {
+                ($val:expr) => {
+                    match $val.as_array() {
+                        Some(arr) => {
+                            let v0 = arr.get(0).unwrap_or_else(|| panic!("\n\n\n[ERROR] First (red) rgb value is undefined\nHere -> {}\n\n\n", $val));
+                            let v1 = arr.get(1).unwrap_or_else(|| panic!("\n\n\n[ERROR] Second (green) rgb value is undefined\nHere -> {}\n\n\n", $val));
+                            let v2 = arr.get(2).unwrap_or_else(|| panic!("\n\n\n[ERROR] Third (blue) rgb value is undefined\nHere -> {}\n\n\n", $val));
+                            Some(format!("\x1B[0m\x1B[{}38;2;{v0};{v1};{v2}m",
+                                match arr.get(3) {
+                                    Some(_) => "",
+
+                                    _ => "1;"
+                                }
+                            ))
+                        }
+
+                        _ => match $val.as_str() {
+                            Some(v) => Some(v.to_string()),
+                            _ => None
+                        }
+                    }
+                }
+            }
+
             macro_rules! set_env {
                 ($get:expr; $var:expr => $val:expr) => {
                     match conf_table.get($get) {
                         Some(v) => {
-                            println!("cargo:rustc-env={}={}", $var, v.as_str().unwrap());
+                            if let Some(v) = array_or_string!(v) {
+                                println!("cargo:rustc-env={}={}", $var, v);
+                            }
                         }
 
-                        _ => {
-                            if let Some(v) = $val {
-                                println!("cargo:rustc-env={}={}", $var, v.as_str().unwrap());
+                        _ => if let Some(v) = $val {
+                            if let Some(v) = array_or_string!(v) {
+                                println!("cargo:rustc-env={}={}", $var, v);
                             }
                         }
                     }
