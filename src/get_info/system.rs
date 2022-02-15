@@ -56,14 +56,19 @@ pub fn get_os() -> OS {
 
 /// Get the hostname of the machine
 pub fn get_host() -> String {
-    let mut host = std::fs::read_to_string("/etc/hostname")
-        .unwrap_or_else(|_| std::env::var("HOSTNAME").unwrap_or_else(|_| String::from("")))
-        .strip_suffix('\n')
-        .unwrap_or("")
-        .to_string();
+
+    let mut host = var("HOSTNAME").unwrap_or_else(|_| 
+        std::fs::read_to_string("/etc/hostname")
+        .unwrap_or_else(|_| String::new())
+        .trim_end()
+        .to_string()
+    );
 
     if host.is_empty() {
-        host = var("HOSTNAME").unwrap_or_else(|_| String::from(""));
+        host = std::fs::read_to_string("/etc/hostname")
+        .unwrap_or_else(|_| String::new())
+        .trim_end()
+        .to_string()
     }
 
     host
