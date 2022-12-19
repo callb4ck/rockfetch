@@ -18,3 +18,11 @@ The configurations happens at compile time, simply edit the file: `Config.toml`.
 * Fedora
 * Ubuntu
 * Void
+
+# Note: Fedora
+Since version 0.1.6, to count packages on Fedora, rockfetch will attempt to read the `/var/cache/dnf/packages.db` database with rusqlite (sqlite3).
+
+This is default behaviour.
+
+If you'd prefer rockfetch to behave in the old way, calling the `rpm` command instead of reading DNF's package database, disable the `fedora-sqlite` feature
+by compiling with the flag: `--no-default-features` or by editing the  `Cargo.toml` file manually (by removing `"fedora-sqlite"` from `default = [...]`).

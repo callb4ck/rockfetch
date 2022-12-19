@@ -3,6 +3,35 @@ use crate::{
     get_info::{shell::{get_gui, get_shell}, system::{get_host, get_user, get_uptime}}, env_or, rgb,
 };
 
+
+#[cfg(not(feature = "fedora-sqlite"))]
+#[inline]
+fn get_packages() -> Option<usize> {
+    Some(
+        exec!(notrim "rpm", "-qa")
+        .matches('\n')
+        .count()
+    )
+}
+
+#[cfg(feature = "fedora-sqlite")]
+#[inline]
+fn get_packages() -> Option<usize> {
+    use rusqlite::Connection;
+
+    Connection::open("/var/cache/dnf/packages.db") // Open the connection
+        .ok()?
+        .prepare(r"SELECT count(pkg) FROM installed;") // Prepare the statement
+        .ok()?
+        .query([]) // perform the query (get the rows)
+        .ok()?
+        .next() // get the first row
+        .ok()??
+        .get(0) // get first column
+        .ok()
+}
+
+
 pub fn print() {
     let reset = env_or!(reset);
     let c1 = env_or!("C1" or rgb!(99, 99, 249));
@@ -18,7 +47,7 @@ pub fn print() {
 
     let kernel = exec!("uname", "-sr");
     let uptime = get_uptime();
-    let packages = exec!(notrim "rpm", "-qa").matches('\n').count();
+    let packages = get_packages().unwrap_or_default();
     let shell = get_shell();
 
     let gui = get_gui();

@@ -1,6 +1,6 @@
 [package]
 name = "rockfetch"
-version = "0.1.5"
+version = "0.1.6"
 edition = "2021"
 license = "MIT"
 
@@ -8,6 +8,11 @@ license = "MIT"
 
 [dependencies]
 rs-release = "0.1.7"
+rusqlite = { version = "0.28.0", features = ["bundled"], optional=true }
 
 [build-dependencies]
 toml = "0.5.8"
+
+[features]
+fedora-sqlite=["dep:rusqlite"]
+default = ["fedora-sqlite"]
