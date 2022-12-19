@@ -103,7 +103,7 @@ checksum = "6ac9a59f73473f1b8d852421e59e64809f025994837ef743615c6d0c5b305160"
 
 [[package]]
 name = "rockfetch"
-version = "0.1.6"
+version = "0.1.7"
 dependencies = [
  "rs-release",
  "rusqlite",
