@@ -26,5 +26,5 @@ Since version `0.1.7`, to count packages on Fedora, rockfetch will attempt to re
 
 This is default behaviour.
 
-If you'd prefer rockfetch to behave in the old way, calling the `rpm` command instead of reading RPM's package database, disable the `fedora-sqlite` feature
+If you'd prefer rockfetch to behave in the old way, calling the `rpm` command instead of directly reading RPM's package database, disable the `fedora-sqlite` feature
 by compiling with the flag: `--no-default-features` or by editing the  `Cargo.toml` file manually (removing `"fedora-sqlite"` from `default = [...]`).
