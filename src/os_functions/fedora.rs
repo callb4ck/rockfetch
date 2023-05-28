@@ -19,9 +19,9 @@ fn get_packages() -> Option<usize> {
 fn get_packages() -> Option<usize> {
     use rusqlite::Connection;
 
-    Connection::open("/var/cache/dnf/packages.db") // Open the connection
+    Connection::open("/var/lib/rpm/rpmdb.sqlite") // Open the connection
         .ok()?
-        .prepare(r"SELECT count(pkg) FROM installed;") // Prepare the statement
+        .prepare(r"select count(key) from Name;") // Prepare the statement
         .ok()?
         .query([]) // perform the query (get the rows)
         .ok()?
