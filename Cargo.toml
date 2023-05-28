@@ -3,6 +3,8 @@ name = "rockfetch"
 version = "0.1.7"
 edition = "2021"
 license = "MIT"
+description = "An aestethic fetch program written in Rust"
+repository = "https://github.com/DumbMahreeo/rockfetch"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
